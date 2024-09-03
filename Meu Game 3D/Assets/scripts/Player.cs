@@ -9,16 +9,18 @@ using Vector3 = UnityEngine.Vector3;
 public class Player : MonoBehaviour
 {
     public int velocidade = 5;
-    public Rigidbody rb;
-
     public int forcaPulo = 10;
-
     public bool noChao = false;
+    
+    public Rigidbody rb;
+    private AudioSource source;
+    
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("eae man");
         TryGetComponent(out rb);
+        TryGetComponent(out source);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         rb.AddForce(direcao * (velocidade * Time.deltaTime), ForceMode.Impulse);
         if(Input.GetKeyDown(KeyCode.Space) && noChao == true) //PULO
         {
+                source.Play();
                 rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
                 noChao = false;
         }
