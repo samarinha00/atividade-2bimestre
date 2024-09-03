@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         alvo = GameObject.FindWithTag("player").transform;
-        offset = alvo.position - transform.position;
+        offset = transform.position - alvo.position;
     }
 
     // Update is called once per frame
